@@ -6,6 +6,7 @@ const app = express()
 const PORT = 8000
  
 // ----------------------- middleware
+app.use(express.json())
 app.use(globalmiddleware)
 
 // ----------------------- Routes
