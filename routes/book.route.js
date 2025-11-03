@@ -1,11 +1,13 @@
 // routes\book.route.js
 const express = require("express")
-const {getAllBook, getBookById, createBook, deleteBookById, updateBookById} = require("../controllers/books.controler")
+const {getAllBook, getBookById, createBook, deleteBookById, updateBookById, getBookByTitle} = require("../controllers/books.controler")
 
 const router = express.Router()
 
 
 router.get("/", getAllBook)
+
+router.get("/title/", getBookByTitle)
 
 router.get("/:id", getBookById)
 

@@ -1,4 +1,4 @@
-// .env file ko load karne ke liye
+// db\connection.js
 require('dotenv').config();
 
 const { drizzle } = require("drizzle-orm/node-postgres");

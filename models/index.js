@@ -1,3 +1,4 @@
+// models\index.js
 const authorTable = require("./author.model")
 const bookTable = require("./book.model")
 

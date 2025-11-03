@@ -1,3 +1,4 @@
+// index.js
 const express = require('express')
 const {globalmiddleware} = require('./middlewares/globalmiddleware')
 const bookRoute = require("./routes/book.route")

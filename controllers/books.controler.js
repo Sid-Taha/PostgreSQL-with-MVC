@@ -1,5 +1,5 @@
 // controllers\books.controler.js
-const { eq } = require("drizzle-orm")
+const { eq, sql } = require("drizzle-orm")
 const db = require("../db/connection")
 const bookTable = require("../models/book.model")
 
@@ -18,6 +18,20 @@ exports.getBookById = async (req, res) =>{
     const clientId = req.params.id
     
     const result = await db.select().from(bookTable).where(eq(bookTable.id, clientId)).limit(1)
+    
+    console.log("✅", result);
+    
+    res.json({apiResponse: result})
+    
+}
+
+
+exports.getBookByTitle = async (req, res) =>{
+    console.log("💁‍♂️ getBookByTitle");
+    
+    const booktitle = await req.query.booktitle
+     
+    const result = await db.select().from(bookTable).where(sql`to_tsvector('english', ${bookTable.title}) @@ plainto_tsquery('english', ${booktitle})`);
     
     console.log("✅", result);
     
