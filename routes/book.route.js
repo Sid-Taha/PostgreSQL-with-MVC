@@ -4,18 +4,25 @@ const {getAllBook, getBookById, createBook, deleteBookById, updateBookById, getB
 
 const router = express.Router()
 
-
+// GET all books with this api
+// GET /api/v1/books
+// GET /api/v1/books?search=book 1
+// GET /api/v1/books?authorId=xxxxxxxxxxxx
+// GET /api/v1/books?bookId=xxxxxxxxxxxxxx
 router.get("/", getAllBook)
 
-router.get("/title/", getBookByTitle)
-
-router.get("/:id", getBookById)
-
+// Create new book
+// POST /api/v1/books
 router.post("/", createBook)
 
+// Update existing data
+// PATCH /api/v1/books/:id
+router.patch("/:id", updateBookById)
+
+// Delete existing data
+// DELETE /api/v1/books/:id
 router.delete("/:id", deleteBookById)
 
-router.patch("/:id", updateBookById)
 
 
 module.exports = router

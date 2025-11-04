@@ -10,8 +10,36 @@ const PORT = 8000
 app.use(express.json())
 app.use(globalmiddleware)
 
+// ----------------------- health Check
+app.get("/", (req, res)=>{
+    res.status(200).json({
+        success : true,
+        message : "Book Store API",
+        version : "1.0.0",
+        endpoints : {
+            health: "/health",
+            books : "/api/v1/books",
+            author : "/api/v1/author"
+        }
+    })
+})
+
+
+
+
+
+app.get("/health", (req, res)=>{
+    res.status(200).json({
+        success : true,
+        message : "Server is healthy",
+        timestamp: new Date().toISOString()
+    })
+})
+
+
 // ----------------------- Routes
-app.use("/", bookRoute)
+app.use("/api/v1/books", bookRoute)
 
 
 app.listen(PORT, ()=>{console.log("server is running on port 8000")})
+
