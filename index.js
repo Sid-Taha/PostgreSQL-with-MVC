@@ -2,6 +2,7 @@
 const express = require('express')
 const {globalmiddleware} = require('./middlewares/globalmiddleware')
 const bookRoute = require("./routes/book.route")
+const authorRoute = require("./routes/author.route")
 
 const app = express()
 const PORT = 8000
@@ -19,13 +20,10 @@ app.get("/", (req, res)=>{
         endpoints : {
             health: "/health",
             books : "/api/v1/books",
-            author : "/api/v1/author"
+            author : "/api/v1/authors"
         }
     })
 })
-
-
-
 
 
 app.get("/health", (req, res)=>{
@@ -39,7 +37,7 @@ app.get("/health", (req, res)=>{
 
 // ----------------------- Routes
 app.use("/api/v1/books", bookRoute)
+app.use("/api/v1/authors", authorRoute)
 
 
 app.listen(PORT, ()=>{console.log("server is running on port 8000")})
-
