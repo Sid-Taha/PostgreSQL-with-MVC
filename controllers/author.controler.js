@@ -80,6 +80,7 @@ try {
 
 
 exports.deleteAuthorById = async (req, res) =>{
+try {
     const {id} = req.params
 
     const books = await db.select().from(bookTable).where(eq(bookTable.authorId, id))
@@ -91,4 +92,8 @@ exports.deleteAuthorById = async (req, res) =>{
     const result = await db.delete(authorTable).where(eq(authorTable.id, id)).returning()
 
     return res.status(200).json({message: "Author Deleted !", result: result})
+} catch (error) {
+    console.error("Error deleting authors: ", error);
+    return res.status(500).json({message: "Error deleting authors"}) 
+}
 }
