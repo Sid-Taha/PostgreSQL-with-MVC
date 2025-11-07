@@ -36,10 +36,7 @@ exports.getAllBook = async (req, res)=>{
 exports.createBook = async (req, res) => {
     try {
         const {title, description, authorId} = req.body
-        // validation
-        if(!title || ! description || ! authorId){
-            return res.status(400).json({message : "title, description or authorId is missing"})
-        }
+
         // check if author exists
         const authorExists = await db.select().from(authorTable).where(eq(authorTable.id, authorId)).limit(1)
 

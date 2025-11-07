@@ -1,5 +1,6 @@
 const express = require("express")
 const {getAllAuthors, createAuthor, updateAuthorById, deleteAuthorById} = require("../controllers/author.controler")
+const {getAuthorValidateMiddleware, createAuthorValidateMiddleware, updateAuthorValidateMiddleware, deleteAuthorValidateMiddleware} = require("../middlewares/author.validation.middleware")
 
 const router = express.Router()
 
@@ -7,19 +8,19 @@ const router = express.Router()
 // GET all authors
 // GET /api/v1/authors
 // GET /api/v1/authors?search=xxxxxxxx
-router.get("/", getAllAuthors)
+router.get("/", getAuthorValidateMiddleware ,getAllAuthors)
 
 // create authors
 // GET /api/v1/authors
-router.post("/", createAuthor)
+router.post("/", createAuthorValidateMiddleware ,createAuthor)
 
 // update
 // PATCH /api/v1/authors/:id
-router.patch("/:id", updateAuthorById)
+router.patch("/:id", updateAuthorValidateMiddleware ,updateAuthorById)
 
 // Delete 
 // PATCH /api/v1/authors/:id
-router.delete("/:id", deleteAuthorById)
+router.delete("/:id", deleteAuthorValidateMiddleware ,deleteAuthorById)
 
 
 module.exports = router
